@@ -1,0 +1,8 @@
+/home/anwer-me/workspace/spring-templates/spring-mvc-security/src/main/java/com/ect/cws/security/GrantedAuthorityModel.java
+/home/anwer-me/workspace/spring-templates/spring-mvc-security/src/main/java/com/ect/cws/controllers/PrivatePageController.java
+/home/anwer-me/workspace/spring-templates/spring-mvc-security/src/main/java/com/ect/cws/security/AuthorizationModel.java
+/home/anwer-me/workspace/spring-templates/spring-mvc-security/src/main/java/com/ect/cws/security/CometDAuthController.java
+/home/anwer-me/workspace/spring-templates/spring-mvc-security/src/main/java/com/ect/cws/security/SecurityUtils.java
+/home/anwer-me/workspace/spring-templates/spring-mvc-security/src/main/java/com/ect/cws/security/LoginController.java
+/home/anwer-me/workspace/spring-templates/spring-mvc-security/src/main/java/com/ect/cws/security/UserDao.java
+/home/anwer-me/workspace/spring-templates/spring-mvc-security/src/main/java/com/ect/cws/controllers/PublicPageController.java

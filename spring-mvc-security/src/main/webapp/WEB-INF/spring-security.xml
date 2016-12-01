@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:security="http://www.springframework.org/schema/security" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+              http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+              http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+              http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/main**" access="hasRole ('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/cometd/auth" access="hasRole ('ROLE_ADMIN')" />
+		<security:form-login login-page="/login" default-target-url="/main"
+			login-processing-url="/j_spring_security_check"
+			authentication-failure-url="/login?error" username-parameter="username"
+			password-parameter="password" />
+		<security:logout logout-url="/j_spring_security_logout"
+			logout-success-url="/main" />
+		<security:csrf />
+	</security:http>
+
+	<bean id="userDao" class="com.ect.cws.security.UserDao"></bean>
+
+	<bean id="userDaoBasedAuthenticationProvider"
+		class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDao" />
+		<property name="passwordEncoder">
+			<bean
+				class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+		</property>
+	</bean>
+
+	<security:authentication-manager>
+		<security:authentication-provider ref="userDaoBasedAuthenticationProvider" />
+	</security:authentication-manager>
+</beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30">
+    <Properties>
+        <Property name="log-path">/var/log/ect/webapps</Property>
+    </Properties>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d [%t] %-5p %c - %m%n"/>
+        </Console>
+        <RollingFile name="FILE" fileName="${log-path}/vpbx-container.log" filePattern="${log-path}/vpbx-container-%d{yyyy-MM-dd}.log.gz">>
+            <PatternLayout pattern="%d [%t] %-5p %c - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.springframework.security.saml" level="warn"/>
+        <Logger name="PROTOCOL_MESSAGE" level="warn"/>
+        <Logger name="org.opensaml" level="warn"/>
+        <Root level="info">
+            <AppenderRef ref="STDOUT" />
+        </Root>
+    </Loggers>
+</Configuration>
